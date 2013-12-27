@@ -93,4 +93,9 @@ end
     get 'usuario', :login =>  'adi@ua.es'
     assert last_response.ok?
   end
+
+  def test_mostrar_los_datos_del_usuario_en_su_vista
+    get 'usuario', :login => 'adi@ua.es'
+    body_includes 'adi@ua.es.jpg', 'Alfonso', 'David Iradier'
+  end
 end
