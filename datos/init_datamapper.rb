@@ -1,5 +1,7 @@
 require 'data_mapper'
 
+$this_dir = File.dirname(File.absolute_path(File.new(__FILE__)))
+
 def init_datamapper
   DataMapper::Logger.new($stdout, :debug)
   #usaremos sqlite en vez de mysql para simplificar
@@ -8,7 +10,7 @@ def init_datamapper
                     :host => 'localhost',
                     :username => '',
                     :password => '',
-                    :database => 'muevete_bd.sqlite'
+                    :database => "#{$this_dir}/../web/muevete_bd.sqlite"
   )
 
   #reglas de inflexión para el castellano tomadas de https://gist.github.com/maxidr/838188
