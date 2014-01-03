@@ -48,7 +48,7 @@ function userLogin(){
     var contrasenya = document.getElementById('id_pass');
     if(validateLogin(usuario.value, contrasenya.value)){
         var req = new XMLHttpRequest();
-        req.open('POST', "login", false);
+        req.open('POST', "auth/login", false);
         req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         req.onreadystatechange = mi_callback(req, usuario.value);
         var loginSplit = usuario.value.split("@");

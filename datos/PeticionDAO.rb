@@ -4,4 +4,8 @@ class PeticionDAO
   def listar_destacadas()
     Peticion.all(:destacada => true)
   end
+
+  def mostrar_peticion(id)
+    Peticion.get(id)
+  end
 end

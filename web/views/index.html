@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Muevete</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                     <label id="id_labelpass" class="text">Contraseña</label>
                     <input id="id_pass" class="form" type="password" name="password">
                     <div id="id_errorPassLogin" class="error" style="display:none">Campo contraseña no pude ser vacio</div>
-                    <a id="id_linkEnterLogin" class="linkEnter" href="javascript:userLogin();">Enter</a>
+                    <a id="id_linkEnterLogin" class="linkEnter" href="javascript:userLogin();">Entrar</a>
                     <a id="id_linkCancelLogin" class="linkEnter" href="javascript:hideLightboxLogin();">Cancelar</a>
                 </form>
             </div>
@@ -86,7 +86,7 @@
                 <img id="id_imgpeticiones" class="imgpeticiones" src="img/peticiones/{{id}}.jpg" alt="{{titulo}}">
                 <p id="id_outstanding-tittle" class="tittleoutstanding">{{titulo}}</p>
                 <div id="id_footerOutstanding" class="footeroutstanding">
-                    Firmas conseguidas: {{firmasConseguidas}}
+                    Firmas conseguidas: {{firmasConseguidas}} / {{firmasObjetivo}}
                     <a id="id_peticion" class="peticion" href="peticion?id={{id}}">Ver peticion</a>
                 </div>
             </div>
@@ -104,6 +104,6 @@
         </p>
     </div>
 
-    <script type="text/javascript" src="functions.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
 </body>
 </html>
