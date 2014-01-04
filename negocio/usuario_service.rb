@@ -8,4 +8,17 @@ class UsuarioService
   def autentificar(login, password)
     UsuarioDAO.new.autentificar(login, password)
   end
+
+  def registrar(nombre, apellidos, login, password)
+    UsuarioDAO.new.registrar(nombre, apellidos, login, password)
+  end
+
+  def loginDisponible(login)
+    usuario = UsuarioDAO.new.mostrar_usuario(login)
+    if(usuario)
+      false
+    else
+      true
+    end
+  end
 end

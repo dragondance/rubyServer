@@ -8,4 +8,8 @@ class UsuarioDAO
   def autentificar(login, password)
     Usuario.first(:login => login, :password => password)
   end
+
+  def registrar(nombre, apellidos, login, password)
+    u1 = Usuario.create(:login => login, :password => password, :nombre => nombre, :apellidos => apellidos)
+  end
 end
