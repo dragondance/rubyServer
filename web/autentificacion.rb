@@ -15,6 +15,7 @@ class ServidorAutentificacion < Sinatra::Base
     else
       usuario = UsuarioService.new.autentificar(params[:login], params[:password])
       if usuario
+        session[:login] = usuario.login
         status 200
       else
         status 403
@@ -28,5 +29,6 @@ class ServidorAutentificacion < Sinatra::Base
     Tilt.register Tilt::MustacheTemplate, 'html'
 
     @servicioPeticiones = PeticionService.new
+    @servicioUsuarios = UsuarioService.new
   end
 end

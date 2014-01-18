@@ -17,7 +17,7 @@ class ServidorAPI < Sinatra::Base
     if params[:login] == '' || params[:password]  == '' || params[:nombre] == '' || params[:apellidos] == ''
       status 400
     else
-      usuario = UsuarioService.new.registrar(params[:nombre], params[:apellidos], params[:login], params[:password])
+      usuario = UsuarioService.new.registrar(params[:nombre], params[:apellidos], params[:login], params[:password]).to_json
       if usuario
         status 201
       else
@@ -36,11 +36,26 @@ class ServidorAPI < Sinatra::Base
     end
   end
 
+  post '/peticiones' do
+    puts params[:titulo]
+    if(params[:titulo] == '')
+      status 400
+    else
+      if(session[:login])
+        peticion = PeticionService.new.crear_peticion(params[:titulo], params[:fin], params[:texto], params[:firmasObjetivo])
+        status 201
+      else
+        status 403
+      end
+    end
+  end
+
   configure do
     'Arrancando la aplicacion ...'
     init_datamapper
     Tilt.register Tilt::MustacheTemplate, 'html'
 
     @servicioPeticiones = PeticionService.new
+    @servicioUsuarios = UsuarioService.new
   end
 end

@@ -28,11 +28,16 @@ class ServidorPlantillas < Sinatra::Base
     mustache :usuario
   end
 
+  get '/logout' do
+    session.clear
+  end
+
   configure do
     'Arrancando la aplicacion ...'
     init_datamapper
     Tilt.register Tilt::MustacheTemplate, 'html'
 
     @servicioPeticiones = PeticionService.new
+    @servicioUsuarios = UsuarioService.new
   end
 end
