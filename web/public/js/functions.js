@@ -189,7 +189,7 @@ function userRegister(){
     var mail = document.getElementById('id_regmail');
     var pass = document.getElementById('id_regpass');
     var pass2 = document.getElementById('id_regpass2');
-    if(validateRegister(name.value, apellidos.value, mail.value, pass.value, pass2.value)){
+   // if(validateRegister(name.value, apellidos.value, mail.value, pass.value, pass2.value)){
         var req = new XMLHttpRequest();
         req.open('POST', "api/usuarios", false);
         req.setRequestHeader("Content-type","application/json");
@@ -202,7 +202,7 @@ function userRegister(){
         }
         var jsonString = JSON.stringify(json);
         req.send(jsonString);
-    }
+    //}
 }
 
 //COmprueba la resputa de la peticion al servidor del nuevo registro
@@ -444,9 +444,9 @@ function showDataSignatureForm(){
 
 function hideanimateLog(){
     $(document).ready(function() {
-           setTimeout(function () {
-               $(".serverLog").fadeOut(1500);
-           }, 5000);
+        setTimeout(function () {
+            $(".serverLog").fadeOut(1500);
+        }, 5000);
     });
 }
 

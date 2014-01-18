@@ -24,6 +24,8 @@ class ServidorAutentificacion < Sinatra::Base
   end
 
   configure do
+    enable :sessions
+    set :session_secret, 'secret'
     'Arrancando la aplicacion ...'
     init_datamapper
     Tilt.register Tilt::MustacheTemplate, 'html'

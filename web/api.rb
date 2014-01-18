@@ -1,6 +1,7 @@
 require 'sinatra/base' #Fijáos en que el 'require' cambia
 require 'sinatra/mustache'
 require 'sinatra/reloader'
+require 'json'
 require_relative '../datos/init_datamapper'
 require_relative '../negocio/usuario_service'
 require_relative '../negocio/peticion_service'
@@ -14,10 +15,11 @@ class ServidorAPI < Sinatra::Base
   end
 
   post '/usuarios' do
-    if params[:login] == '' || params[:password]  == '' || params[:nombre] == '' || params[:apellidos] == ''
+    json_data = JSON.parse request.body.read
+    if json_data['nombre'] == '' || json_data['apellidos'] == '' || json_data['login'] == '' || json_data['password'] == ''
       status 400
     else
-      usuario = UsuarioService.new.registrar(params[:nombre], params[:apellidos], params[:login], params[:password]).to_json
+      usuario = UsuarioService.new.registrar(json_data['nombre'], json_data['apellidos'], json_data['login'], json_data['password'])
       if usuario
         status 201
       else
@@ -37,13 +39,17 @@ class ServidorAPI < Sinatra::Base
   end
 
   post '/peticiones' do
-    puts params[:titulo]
-    if(params[:titulo] == '')
+    json_data = JSON.parse request.body.read
+    if(json_data['titulo'] == '' || json_data['fin'] == '' || json_data['texto'] == '' || json_data['firmasObjetivo'] == '')
       status 400
     else
       if(session[:login])
-        peticion = PeticionService.new.crear_peticion(params[:titulo], params[:fin], params[:texto], params[:firmasObjetivo])
-        status 201
+        peticion = PeticionService.new.crear_peticion(json_data['titulo'], json_data['fin'], json_data['texto'], json_data['firmasObjetivo'])
+        if(peticion)
+          status 201
+        else
+          400
+        end
       else
         status 403
       end
