@@ -5,6 +5,7 @@ require 'data_mapper'
 #añadir el resto de entidades conforme las vayamos implementando
 require '../dominio/peticion'
 require '../dominio/usuario'
+require '../dominio/firma'
 require_relative 'init_datamapper'
 
 init_datamapper
@@ -12,6 +13,7 @@ init_datamapper
 def init_data
   Peticion.destroy
   Usuario.destroy
+  Firma.destroy
 
   texto1 = <<END
   Desde tiempos inmemoriales los humanos han cazado a los berberechos sin piedad.

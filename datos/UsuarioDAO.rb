@@ -10,6 +10,6 @@ class UsuarioDAO
   end
 
   def registrar(nombre, apellidos, login, password)
-    u1 = Usuario.create(:login => login, :password => password, :nombre => nombre, :apellidos => apellidos)
+    u = Usuario.create(:login => login, :password => password, :nombre => nombre, :apellidos => apellidos)
   end
 end
